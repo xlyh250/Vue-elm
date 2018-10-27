@@ -21,7 +21,7 @@ npm i
 npm run dev
 
 项目展示:
-![1](https://github.com/xlyh250/Vue-elm/blob/master/gif/vue-elm.gif）
+![1](https://github.com/xlyh250/Vue-elm/blob/master/gif/vue-elm.gif)
 
 
 2018/10/27
