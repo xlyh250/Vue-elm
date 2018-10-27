@@ -29,14 +29,15 @@ footer, header, menu, nav, section {
   display: block;
 }
 html{
-  font-size: 100px;
+  /* font-size: 100px; */
   overflow-x: hidden;
+  font-size: calc(25vw);
 }
 
 
 body {
   line-height: 1;
-  font-size: 18px;
+  font-size: 0.16rem;
   overflow-x: hidden;
 }
 
@@ -115,3 +116,7 @@ body {
   url('//at.alicdn.com/t/font_831435_2844k487b57j.ttf') format('truetype'),
   url('//at.alicdn.com/t/font_831435_2844k487b57j.svg#iconfont') format('svg');
 }
+
+
+
+

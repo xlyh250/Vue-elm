@@ -1,5 +1,5 @@
 
-
+import localStorage from '@/localStorage/localStorage'
 export default {
     latitude: 21.83090, // 纬度
     longitude: 111.99462, // 经度
@@ -10,5 +10,6 @@ export default {
     shopinfo:{},    //      商家信息
     ratings:[],     //  商家评价
     goods:[],       //商家商品
-    cartFoods: [] // 购物车中食物的列表
+    cartFoods: [], // 购物车中食物的列表
+    commit:''
 }

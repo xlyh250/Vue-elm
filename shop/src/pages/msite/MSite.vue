@@ -63,8 +63,12 @@ export default {
    },
    methods: {
       
-   }
-  
+   },
+   created() {
+       setTimeout(() => {
+           this.categorys
+       }, 1500);
+   },
 }
 
 </script>

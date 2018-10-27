@@ -5,7 +5,6 @@
                <div class="my">我的</div>
                <div class="top_bottom">
                     <div class="user_img">
-                       
                         <i class="iconfont icon-denglu"></i>
                     </div>
                     <div>
@@ -38,8 +37,12 @@
           
        </div>
     <logout-alert :Logoutalert="Logoutalert" @choseThis="choseThis" @cancelThis="cancelThis">
-         <div name="slotB">
-                 <div class="text">确认要退出？</div>
+           <div name="slotB">
+                 <div class="text">
+                     <div>
+                         确认要退出？
+                     </div> 
+                </div>
             </div>
     </logout-alert>
    </div>
@@ -110,11 +113,9 @@ export default {
               display flex
               width 100%
               height 1.5rem
-              justify-content space-between
               align-items center
               margin-left .1rem
               >div
-                  flex 1
                   .profile-link
                       display flex
                       flex-direction column
@@ -133,7 +134,7 @@ export default {
                   border-radius 50%
                   background #fff
                   height auto
-                  width auto
+                  width 100px
                   .icon-denglu
                      font-size .5rem
                      padding .2rem 0
@@ -141,6 +142,8 @@ export default {
                   display flex
                   justify-content flex-end
                   padding-left .1rem
+                  position absolute
+                  right 0
                   .icon-xiayibu
                      font-size .2rem
                      margin-right .1rem

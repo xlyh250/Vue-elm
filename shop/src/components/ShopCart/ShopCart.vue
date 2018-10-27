@@ -7,12 +7,12 @@
                    <div class="count" v-if="totalCount">{{totalCount}}</div>
                </div>
                 <div class="text">
-                   <p>配送费</p>
+                   <p >配送费</p>
                    <p>￥{{totalPrice||shopinfo.deliveryPrice}}</p>
                </div>
             </div>
             <div class="right_footer">
-               <div :class="{show:totalPrice>=20}">￥{{Text}}</div> 
+               <div :class="{show:totalPrice>=20}" @click="settlement">￥{{Text}}</div> 
             </div>
          <div>
              <transition name="fadein">
@@ -39,9 +39,23 @@
         </transition>
         <logout-alert :Logoutalert="Logoutalert" @choseThis="choseThis" @cancelThis="cancelThis">
             <div name="slotA">
-                 <div class="text">确认要清空？</div>
+                 <div class="text">
+                     <div>
+                         确认要清空？
+                     </div> 
+                 </div>
             </div>
         </logout-alert>
+        <div class="list-mask" v-show="isShow" @click="isShow = !isShow">
+        </div>
+        <transition name="isfade">
+          <div class="fristLogin" v-show="isShow">
+            <div>
+                请先登录
+                </div>  
+          </div>
+        </transition>
+       
    </div>
 </template>
 
@@ -54,7 +68,8 @@ export default {
    data () {
       return {
         show:false,
-        Logoutalert:false
+        Logoutalert:false,
+        isShow:false
       };
    },
 
@@ -64,7 +79,7 @@ export default {
    },
 
    computed: {
-       ...mapState(['shopinfo',"cartFoods"]),
+       ...mapState(['shopinfo',"cartFoods",'user_info']),
        ...mapGetters(['totalCount','totalPrice']),
        Text() {
            const {totalPrice} = this;
@@ -102,6 +117,18 @@ export default {
       cancelThis() {
            this.Logoutalert = !this.Logoutalert
            
+      },
+      settlement() {
+          if(this.totalPrice < 20){
+              return 
+          }
+
+          if(this.user_info._id){
+             this.$router.push('/settlement')
+          }else{
+            this.isShow = !this.isShow
+          }
+          
       }
       
    }
@@ -228,6 +255,30 @@ export default {
     &.fade-enter, &.fade-leave-to
       opacity 0
       background rgba(7, 17, 27, 0)
-
-                 
+  .fristLogin
+    position absolute
+    top 35%
+    left 30%
+    width 40%
+    height 0
+    padding-bottom 40%
+    z-index 99999999
+    background #ffffff
+    border-radius 5px
+    box-shadow: #000 0 0 15px
+    &.isfade-enter-active, &.isfade-leave-active
+      transition all 0.5s
+    &.isfade-enter, &.isfade-leave-to
+      transform translate3d(0,-400%,0)
+    >div
+        position absolute
+        top 30%
+        left 15%
+        width 70%
+        height 40%
+        font-size .16rem
+        font-weight bold
+        text-align center
+    
+     
 </style>

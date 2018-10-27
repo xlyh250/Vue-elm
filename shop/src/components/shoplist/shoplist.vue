@@ -1,7 +1,7 @@
 <template>
- <div class="abc">
+ <div class="abc" ref="abc">
 
-   <div class="shop_container">
+   <div class="shop_container" >
        <div>
            附近商家
        </div>
@@ -50,7 +50,8 @@ export default {
    data () {
       return {
         baseImgUrl: 'http://cangdu.org:8001/img/',
-        shopss:''
+        shopss:'',
+        distance:''
       }
     },
 
@@ -62,7 +63,7 @@ export default {
 
    },
    mounted() {
-      new BScroll('.abc')
+       this.initScroll()
    },
    watch:{
         shops(value){
@@ -71,7 +72,27 @@ export default {
             })
        }
    },
-   methods: {}
+ 
+   methods: {
+       initScroll() {
+        this.foodsScroll = new BScroll('.abc',{
+            probeType: 2, // 手指滑动 ( 惯性滑动和编码滑动不监视 )
+            click: true // 响应点击
+        })
+        // 监视滑动过程
+        this.foodsScroll.on('scroll', (pos,scrollBy) => {
+                this.top = this.$refs.abc.offsetTop
+                this.scrollY = Math.abs(pos.y)
+                
+                this.distance = this.top - this.scrollY
+                console.log(this.distance);
+        })
+        // 监视滑动结束
+        this.foodsScroll.on('scrollEnd',(pos) => {
+                this.scrollY = Math.abs(pos.y) // 解决惯性滑动更新
+                })
+        },
+   }
 }
 
 </script>
@@ -83,6 +104,7 @@ export default {
    left 0
    top 2.4rem
    z-index 9999
+   min-width 100%
    .shop_container
         padding-top 0.2rem
         font-size 0.16rem
@@ -96,7 +118,7 @@ export default {
                 padding .1rem
                 .left
                     flex 1 
-                    height auto
+                    height 120px
                     .left_img
                        width 100%
                        height 100%

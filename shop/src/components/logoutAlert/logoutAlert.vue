@@ -1,7 +1,7 @@
 <template>
    <div>
         <div class="wrap" v-show="Logoutalert">
-               <template name="slotA">
+                <template name="slotA" class="slota">
                     <slot></slot>
                  </template>
                 <div class="container">
@@ -62,6 +62,9 @@ export default {
         display flex
         justify-content center
         align-items center
+        .slota
+          display flex
+          color red
         .container
                 width 66%
                 height 30%
@@ -73,6 +76,7 @@ export default {
                 font-size 0.17rem
                 animation: tipMove .4s;
                 border-radius 20px
+                position absolute
              span
                  display block
                  padding 0.2rem
@@ -84,11 +88,15 @@ export default {
                  text-align center
              span:nth-child(2)
                  border-right none
-             .text
-                 position absolute
-                 left 36%
-                 top 39%
-                 z-index 9999
-                 animation: tipMove .4s;
-
+            .text
+                position absolute
+                left 20%
+                top 35%
+                z-index 999
+                animation: tipMove .4s;
+                width 60%
+                height 25%
+                display flex
+                justify-content center
+                align-items center
 </style>

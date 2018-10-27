@@ -9,7 +9,8 @@ import {
     GOODS,
     INCREMENT_FOOD_COUNT,
     DECREMENT_FOOD_COUNT,
-    CLEAR_CART
+    CLEAR_CART,
+    COMMIT
 } from './mutation-types'
 import { 
     reqAddress,
@@ -101,5 +102,10 @@ export default {
     clearCart({ commit }) {
         commit(CLEAR_CART)
     },
+    // 提交留言
+    commit({commit},text) {
+        
+        commit(COMMIT,{text})
+    }
 
 }

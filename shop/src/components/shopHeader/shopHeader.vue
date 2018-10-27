@@ -126,7 +126,7 @@ export default {
         position fixed
         left 0
         top 0
-        z-index 999
+        z-index 9999
         width 100%
         max-width 100%
         height 1.3rem
@@ -198,7 +198,7 @@ export default {
                    .shop_details
                        background #fff
                        border-radius 5px
-                       width 88%
+                       width 75%
                        padding 0.2rem 0
                        box-shadow 0 0 .1rem #888 inset
                        box-sizing border-box

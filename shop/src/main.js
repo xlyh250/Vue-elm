@@ -13,6 +13,7 @@ import loading from './common/imgs/loading.gif'
 import '../static/reset.css'
 import 'swiper/dist/css/swiper.css'
 import './fliters'
+import 'mint-ui/lib/style.css'; 
 
 fastClick.attach(document.body)
 
@@ -26,6 +27,7 @@ Vue.use(VueLazyload, {
 import './mock/mockServer'
 
 Vue.config.productionTip = false
+document.addEventListener("touchstart", function () { }, true)
 
 /* eslint-disable no-new */
 new Vue({

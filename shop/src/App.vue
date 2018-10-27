@@ -13,7 +13,8 @@
 
 <script>
 import FooterGuide from './components/footerguide/FooterGuide'
-import {mapActions} from 'vuex'
+import {mapActions,mapState} from 'vuex'
+import localStorage from '@/localStorage/localStorage'
 
 export default {
   name: 'App',
@@ -45,6 +46,9 @@ export default {
     //     }
     //           return this.show = true
     //  }
+   },
+   watch:{
+
    }
 }
 </script>

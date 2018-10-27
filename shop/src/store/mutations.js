@@ -12,7 +12,8 @@ import {
     GOODS,
     INCREMENT_FOOD_COUNT,
     DECREMENT_FOOD_COUNT,
-    CLEAR_CART
+    CLEAR_CART,
+    COMMIT
 } from './mutation-types'
 
 export default{
@@ -54,7 +55,6 @@ export default{
             Vue.set(food, 'count', 1) // 让新增的属性也有数据绑定
             // 将food添加到cartFoods中
             state.cartFoods.push(food)
-            console.log(state.cartFoods);
             
         } else {
             food.count++
@@ -74,5 +74,8 @@ export default{
         state.cartFoods.forEach(food => food.count = 0)
         // 移除购物车中所有购物项
         state.cartFoods = []
+    },
+    [COMMIT](state,{text}){
+        state.commit = text
     }
 }

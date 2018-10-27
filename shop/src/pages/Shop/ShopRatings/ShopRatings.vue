@@ -28,7 +28,10 @@
                 <span @click="satisfy(0)" :class="{active:selectType===0}">满意 {{positiveSize}}</span>
                 <span @click="satisfy(1)" :class="{active:selectType===1}">不满意  {{ratings.length-positiveSize}}</span>
             </div>
-            <p><span class="iconfont icon-dagou"></span>只看内容的评价</p>
+             <p>
+                <span class="iconfont icon-da_gou" @click="showCommit" :class="{active:onlyShowText }"></span>
+                只看内容的评价
+             </p>
             <div class="comment_content" v-for="(rating, index) in filtersRatings" :key="index"  >
                    <div class="user_img">
                     <span class="iconfont icon-denglu"></span>
@@ -62,7 +65,8 @@ export default {
    data () {
       return {
          num:'',
-         selectType:2
+         selectType:2,
+         onlyShowText :false
       };
    },
 
@@ -71,7 +75,9 @@ export default {
    },
    mounted() {
        this.$store.dispatch('getRatings');
-       new BScroll('.abc')
+       new BScroll('.abc',{
+           click:true
+       })
    },
 
    computed: {
@@ -80,19 +86,37 @@ export default {
      
       //重新计算ratings的数值
       filtersRatings() {
-         const {ratings,selectType} = this;
-        //  过滤新数组
-         return ratings.filter(rating => {
-             const {rateType} = rating
-            return (selectType===2 || selectType===rateType)
-         })
+        const {ratings, onlyShowText, selectType} = this
+
+        // 产生一个过滤新数组
+        return ratings.filter(rating => {
+          const {rateType, text} = rating
+          /*
+            条件1:
+                selectType: 0/1/2
+                rateType: 0/1
+                selectType===2 || selectType===rateType
+            条件2
+                onlyShowText: true/false
+                text: 有值/没值
+                !onlyShowText || text.length>0
+           */
+        //   六种判断情况
+          return (selectType===2 || selectType===rateType) && (!onlyShowText || text.length>0)
+        })
       }
+   },
+   updated() {
+     console.log(this.filtersRatings);
    },
 
    methods: {
       satisfy(index) {
           this.selectType = index
       },
+      showCommit() {
+         this.onlyShowText  = !this.onlyShowText 
+      }
    },
   
 }
@@ -136,10 +160,14 @@ export default {
           background #fff
           padding 0 .2rem
           >p
-            .icon-dagou
-                background #fff
-                color green
-                font-size .16rem
+            
+            .icon-da_gou
+              padding-right .2rem
+              display inline-block
+              color #eee
+              font-size .2rem
+            .active
+              color green
           .is_satisfy
            padding .1rem 0 .1rem .1rem
            span

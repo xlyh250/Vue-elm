@@ -21,4 +21,6 @@ export const DECREMENT_FOOD_COUNT = 'DECREMENT_FOOD_COUNT' // 减少food中的co
 
 export const CLEAR_CART = 'CLEAR_CART'       // 清空购物车
 
+export const COMMIT = 'COMMIT'
+
    

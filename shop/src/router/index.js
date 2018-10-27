@@ -9,6 +9,8 @@ import shop from '@/pages/shop/shop'
 import shopgoods from '@/pages/Shop/ShopGoods/ShopGoods'
 import shopinfo from '@/pages/Shop/shopInfo/shopInfo'
 import shopratings from '@/pages/Shop/ShopRatings/ShopRatings'
+import settlement from '@/components/Settlement/Settlement'
+import ordernotes from '@/components/ordernotes/ordernotes'
 
 Vue.use(Router)
 
@@ -86,5 +88,15 @@ export default new Router({
         },
       ]
     },
+    {
+      path:'/settlement',
+      name:settlement,
+      component:settlement,
+    },
+    {
+      path:'/ordernotes',
+      name:'ordernotes',
+      component:ordernotes
+    }
   ]
 })
